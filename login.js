@@ -17,11 +17,29 @@ function Book(title, author, pages, read){
     }
 }
 
-
-
-function addBookToLibrary(title, author, pages, read) {
-    var book1
+function render(){
+    let libraryBooks = document.getElementById('library');
+    for (let i = 0; i < myLibrary.length; i++){
+        let book = myLibrary[i];
+        let bookDiv = document.createElement('div');
+        bookDiv.innerHTML = book.info();
+        libraryBooks.appendChild(bookDiv);
+    }
 }
 
+function addBookToLibrary() {
+    let title = document.getElementById('Tittle').value;
+    let author = document.getElementById('Author').value;
+    let pages = document.getElementById('Pages').value;
+    let read = document.getElementById('Read').checked;
+ 
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    render();
 
-console.log('hello')
+}
+
+document.querySelector('#newBookForm').addEventListener('submit', function(event){
+    event.preventDefault();
+    addBookToLibrary();
+})

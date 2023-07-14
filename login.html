@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="login.js"></script>
+    <script src="login.js" defer></script>
     <link rel="stylesheet" type = 'text/css' href="login.js">
 </head>
 <body>
-    <form></form>    
+    <form id="newBookForm">
+        <label for = 'Title'> Title </label>
+        <input type="text" id="Tittle">
+
+        <label for = 'Author'> Author </label>
+        <input type="text" id="Author">
+
+        <label for = 'Pages'> Pages </label>
+        <input type="text" id="Pages">
+
+        <label for = 'Read'> Read? </label>
+        <input type="checkbox" id="Read">
+
+        <input type="submit" value="Add Book">
+    </form>
+    
+    <div id="library"></div>
 </body>
 </html>
