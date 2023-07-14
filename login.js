@@ -19,6 +19,7 @@ function Book(title, author, pages, read){
 
 function render(){
     let libraryBooks = document.getElementById('library');
+    libraryBooks.innerHTML = '';
     for (let i = 0; i < myLibrary.length; i++){
         let book = myLibrary[i];
         let bookDiv = document.createElement('div');
