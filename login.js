@@ -17,12 +17,20 @@ function Book(title, author, pages, read){
     }
 }
 
-function removeBook(index){
-    myLibrary.splice(index, 1);
-    render()
+Book.prototype.changeRead = function() {
+    this.read = !this.read;
+    render();
 }
 
+function changeReadLib(index) {
+    myLibrary[index].changeRead();
+    render();
+}
 
+function removeBook(index){
+    myLibrary.splice(index, 1);
+    render();
+}
 
 function render(){
     let libraryBooks = document.getElementById('library');
@@ -36,8 +44,15 @@ function render(){
         removeButton.onclick = function() {removeBook(i)};
         removeButton.innerHTML = 'Remove Me!';
 
-        bookDiv.innerHTML = book.info();
+        let readButton = document.createElement('button');
+        readButton.setAttribute('class', 'readStatus');
+        readButton.onclick = function() {changeReadLib(i)};
+        readButton.innerHTML = "Change read status";
+
+
+        bookDiv.innerHTML = 'Tittle: ' + book.title + 'Author: ' + book.author + 'Pages: ' + book.pages + 'Read: ' + book.read;
         bookDiv.appendChild(removeButton);
+        bookDiv.appendChild(readButton);
 
         libraryBooks.appendChild(bookDiv);
     }
