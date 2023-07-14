@@ -13,9 +13,16 @@ function Book(title, author, pages, read){
             var last = 'Has not been read yet.';
         }
 
-        return (title + ' by ' + author + ', ' + pages.toString() + ' pages. ' + last)
+        return (title + ' by ' + author + ', ' + pages.toString() + ' pages. ' + last + " ")
     }
 }
+
+function removeBook(index){
+    myLibrary.splice(index, 1);
+    render()
+}
+
+
 
 function render(){
     let libraryBooks = document.getElementById('library');
@@ -23,10 +30,19 @@ function render(){
     for (let i = 0; i < myLibrary.length; i++){
         let book = myLibrary[i];
         let bookDiv = document.createElement('div');
+
+        let removeButton = document.createElement('button');
+        removeButton.setAttribute('class', 'removeButton');
+        removeButton.onclick = function() {removeBook(i)};
+        removeButton.innerHTML = 'Remove Me!';
+
         bookDiv.innerHTML = book.info();
+        bookDiv.appendChild(removeButton);
+
         libraryBooks.appendChild(bookDiv);
     }
 }
+
 
 function addBookToLibrary() {
     let title = document.getElementById('Tittle').value;
@@ -44,3 +60,6 @@ document.querySelector('#newBookForm').addEventListener('submit', function(event
     event.preventDefault();
     addBookToLibrary();
 })
+
+
+
